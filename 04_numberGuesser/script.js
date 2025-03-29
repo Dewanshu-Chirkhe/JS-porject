@@ -10,7 +10,7 @@ const startOver = document.querySelector(".resultParas");
 const p = document.createElement("p");
 
 let prevGuess = [];
-let numsGuess = 7;
+let numsGuess = 5;
 
 let playGame = true;
 
