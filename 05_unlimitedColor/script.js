@@ -16,7 +16,7 @@ const startChangingColor = function () {
     }
 
     if(!intervalId){
-        intervalId = setInterval(changeColor, 100);
+        intervalId = setInterval(changeColor, 1000);
     }
 };
 
