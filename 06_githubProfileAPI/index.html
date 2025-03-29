@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>API Request</title>
+    </head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #212121;
+            color: white;
+        }
+        .profile-name {
+            text-align: center;
+            padding: 20px;
+            align-items: center;
+        }
+        input {
+            margin-top: 20px;
+            height: 30px;
+            width: 250px;
+            border: 1px solid;
+            border-radius: 5px;
+            padding: 5px;
+            padding-left: 10px;
+            font-size: medium;
+        }
+        button {
+            margin-top: 20px;
+            height: 43px;
+            width: 80px;
+            font-size: medium;
+            cursor: pointer;
+            border: 1px solid;
+            border-radius: 5px;
+            background-color: rgba(5, 105, 255, 0.883);
+        }
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 450px;
+            height: 300px;
+            background-color: aqua;
+            border-radius: 5px;
+        }
+        .profile {
+            padding: 15px;
+        }
+        .info {
+            text-align: center;
+            font-size: larger;
+            color: black;
+        }
+    </style>
+    <body>
+        <div class="profile-name">
+            <h2>Enter Github User Name</h2>
+            <input type="text" />
+            <button type="submit" id="submit">Submit</button>
+        </div>
+        <div class="wrapper">
+            <div class="profile"></div>
+            <div class="info"></div>
+        </div>
+    </body>
+    <script>
+        let user_name;
+        let profile_url;
+        const url = "https://api.github.com/users/";
+
+        document
+            .querySelector("#submit")
+            .addEventListener("click", function (event) {
+                event.preventDefault();
+
+                user_name = document.querySelector(".profile-name input").value;
+                profile_url = url + user_name;
+                // console.log(profile_url);
+                display(profile_url);
+            });
+
+        function display(profile_url) {
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", profile_url);
+            xhr.onreadystatechange = function () {
+                // console.log(xhr.readyState);
+                if (xhr.readyState == 4) {
+                    const data = JSON.parse(this.responseText);
+
+                    const profileDiv = document.querySelector(".profile");
+                    const nameDiv = document.querySelector(".info");
+
+                    profileDiv.innerHTML = `<img src="${data.avatar_url}" style="width:100px; height:100px; border-radius:50%;"></img>`;
+                    nameDiv.innerHTML = `
+                        <h2>${data.name || "No Name Available"}</h2>
+                        <p><strong>Username:</strong> ${data.login}</p>
+                        <p><strong>Email:</strong> ${
+                            data.email || "Not Available"
+                        }</p>
+                        <p><strong>Public Repos:</strong> ${
+                            data.public_repos
+                        }</p>
+                        <p><strong>Followers:</strong> ${data.followers}</p>
+                        <p><strong>Following:</strong> ${data.following}</p>
+                    `;
+                    // console.log(data.avatar_url);
+                    // console.log(data.login);
+                    // console.log(data.name);
+                    // console.log(data.email);
+                    // console.log(data.public_repos);
+                    // console.log(data.followers);
+                    // console.log(data.following);
+                }
+            };
+            xhr.send();
+        }
+    </script>
+</html>
