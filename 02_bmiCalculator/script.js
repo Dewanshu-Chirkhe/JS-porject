@@ -17,8 +17,8 @@ form.addEventListener('submit', function(event) {
         result.innerHTML = "Please give a vaild weight";
         return;
     }
-    result.innerHTML = `Height : ${height} m`
-    result.innerHTML = `Weight : ${weight} kg`;
+    result.innerHTML = `Height : ${height} m <br>`;
+    result.innerHTML += `Weight : ${weight} kg <br>`;
     const heightM = height / 100;
     const bmi = (weight / (heightM * heightM)).toFixed(2);
     let category;
@@ -31,5 +31,5 @@ form.addEventListener('submit', function(event) {
     } else {
         category = "Obese";
     }
-    result.innerHTML = `Your BMI is <strong>${bmi}</strong> (${category})`;
+    result.innerHTML += `Your BMI is <strong>${bmi}</strong> (${category})<br>`;
 })
