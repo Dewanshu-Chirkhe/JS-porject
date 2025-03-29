@@ -10,7 +10,7 @@ const startOver = document.querySelector(".resultParas");
 const p = document.createElement("p");
 
 let prevGuess = [];
-let numsGuess = 10;
+let numsGuess = 7;
 
 let playGame = true;
 
@@ -82,7 +82,7 @@ function newGame() {
         randomNumber = parseInt(Math.random() * 100 + 1);
         prevGuess = '';
         guessLot.innerHTML = '';
-        numsGuess = 10;
+        numsGuess = 5;
         remaining.innerHTML = `${numsGuess}`;
         userInput.removeAttribute('disabled')
         startOver.removeChild(p)
