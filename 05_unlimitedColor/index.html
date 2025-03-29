@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Number Guessing Game</title>
+    </head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        .wrapper {
+            height: 300px;
+            width: 400px;
+            text-align: center;
+            background-color: #7bbbff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+        }
+        .button-container button {
+            margin-top: 20px;
+            width: 120px; 
+            height: 40px; 
+            font-size: 16px; 
+            border: none;
+            background-color: #007bff; 
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+    <body>
+        <div class="wrapper">
+            <h1>Click start to change background color</h1>
+            <div class="button-container">
+                <button id="start">Start</button>
+                <button id="stop">Stop</button>
+            </div>
+            <script src="script.js"></script>
+        </div>
+    </body>
+</html>
