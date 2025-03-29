@@ -10,7 +10,7 @@ const startOver = document.querySelector(".resultParas");
 const p = document.createElement("p");
 
 let prevGuess = [];
-let numsGuess = 1;
+let numsGuess = 10;
 
 let playGame = true;
 
@@ -30,7 +30,7 @@ function validateGuess(guess) {
         alert("Please enter a number between 1 and 100");
     } else {
         prevGuess.push(guess)
-        if(numsGuess == 10){
+        if(numsGuess <= 1){
             displayGuess(guess);
             displayMessage(`Game Over. Random number was ${randomNumber}.`)
             endGame()
@@ -58,8 +58,8 @@ function checkGuess(guess) {
 function displayGuess(guess) {
     userInput.value = '';
     guessLot.innerHTML += `${guess} , `
-    numsGuess++;
-    remaining.innerHTML = `${10 - numsGuess}`
+    numsGuess--;
+    remaining.innerHTML = `${numsGuess}`
 }
 
 function displayMessage(message) {
@@ -82,7 +82,8 @@ function newGame() {
         randomNumber = parseInt(Math.random() * 100 + 1);
         prevGuess = '';
         guessLot.innerHTML = '';
-        remaining.innerHTML = `${10 - numsGuess}`;
+        numsGuess = 10;
+        remaining.innerHTML = `${numsGuess}`;
         userInput.removeAttribute('disabled')
         startOver.removeChild(p)
         playGame = true;
